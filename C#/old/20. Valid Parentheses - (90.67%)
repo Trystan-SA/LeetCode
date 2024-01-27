@@ -1,0 +1,47 @@
+using System.Text;
+
+static bool IsValid(string s) {
+    bool valid = false;
+    bool Invalid = false;;
+    List<char> table = new List<char>();
+
+    Dictionary<char, char> matching = new Dictionary<char, char>();
+    matching.Add('{', '}');
+    matching.Add('[', ']');
+    matching.Add('(', ')');
+
+    if(s.Length == 1){ valid = false; }
+    else {
+        for (int i = 0; i < s.Length; i++){
+            char c = s[i];
+            if (matching.ContainsKey(c)) { table.Add(c);}
+            else if (matching.ContainsValue(c)){ 
+               
+                if(table.Count > 0){
+                    if(matching[table.Last()] == c){
+                        table.RemoveAt(table.Count-1);
+                    }
+                    else {
+                        Invalid = true;
+                        break;
+                    }
+                }
+                else { 
+                    Invalid=true; 
+                    break;
+                }
+            }
+        }
+
+        if(table.Count == 0 && Invalid == false){
+            valid = true;
+        }
+    }
+    return valid;
+}
+
+
+var result = IsValid("(])");
+Console.WriteLine("result = " + result);
+
+

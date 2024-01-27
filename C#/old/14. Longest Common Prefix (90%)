@@ -1,0 +1,28 @@
+﻿using System.Text;
+
+static string LongestCommonPrefix(string[] strs) {
+    Array.Sort(strs);
+    bool PrefixBreak = false;
+    string prefix = "";
+
+    for (int i=0; i < strs[0].Length; i++){
+        string loopPrefix = ""; 
+
+        foreach (string word in strs){
+            Console.WriteLine(word);
+            string SubWord = word.Substring(0, i+1);
+            Console.WriteLine(SubWord + " i=" + i);
+            if(loopPrefix == ""){ loopPrefix = SubWord; }
+            else if (loopPrefix != SubWord) { PrefixBreak = true; }
+        } 
+        
+        Console.WriteLine(loopPrefix);
+        if(!PrefixBreak){ prefix = loopPrefix; }
+        else {break;}
+    }
+    return prefix;
+}
+
+var result = LongestCommonPrefix(["ab", "a"]);
+Console.WriteLine($"result = {result}");
+

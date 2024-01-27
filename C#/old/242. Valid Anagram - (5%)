@@ -1,0 +1,30 @@
+using System.Text;
+
+
+static bool IsAnagram(string s, string t) {
+    if(s.Length != t.Length){ return false;}
+    List<char> c1 = s.ToList();
+    List<char> c2 = t.ToList();
+
+    int numbersOfMatch = 0;
+
+    for (int i = 0; i < c1.Count; i++){
+        if(numbersOfMatch != i) return false;
+        
+        for (int j = 0; j < c2.Count; j++){
+            if(c1[i] == c2[j]){
+                c2.RemoveAt(j);
+                numbersOfMatch++;
+                break;
+            }
+        }
+    }
+
+    if(numbersOfMatch == c1.Count()) return true;
+    else return false;
+}
+
+var result = IsAnagram("anagram", "nagaram");
+Console.WriteLine("Result = " + result);
+
+

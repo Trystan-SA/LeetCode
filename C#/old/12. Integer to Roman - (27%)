@@ -1,0 +1,87 @@
+// 35 mn -  27.86% CPU - 18.64% MEM
+
+static string IntToRoman(int num) {
+    int remaining = num;
+    string romanStr = ""; 
+    
+    while(remaining > 0){
+
+        Console.WriteLine(remaining);
+
+        if(remaining >= 1000){
+            romanStr += "M";
+            remaining -= 1000;
+            Console.WriteLine("Over 1000   =" + remaining + "   str=" + romanStr);
+        }
+        else if(remaining >= 900){
+            romanStr += "CM";
+            remaining -= 900;
+            Console.WriteLine("Over 900   =" + remaining + "   str=" + romanStr);
+        }
+        else if(remaining > 500 ){
+            romanStr += "D";
+            remaining -= 500;
+            Console.WriteLine("Over 500   =" + remaining + "   str=" + romanStr);
+        }
+        else if(remaining >= 400){
+            romanStr += "CD";
+            remaining -= 400;
+        }
+        else if(remaining >= 100){
+            romanStr += "C";
+            remaining -= 100;
+            Console.WriteLine("Over 100   =" + remaining + "   str=" + romanStr);
+        }
+        else if(remaining >= 90){
+            romanStr += "XC";
+            remaining -= 90;
+             Console.WriteLine("Over 90   =" + remaining + "   str=" + romanStr);
+        }
+        else if(remaining >= 50){
+            romanStr += "L";
+            remaining -= 50;
+            Console.WriteLine("Over 50   =" + remaining + "   str=" + romanStr);
+        }
+        else if(remaining >= 40){
+            romanStr += "XL";
+            remaining -= 40;
+            Console.WriteLine("Over 40   =" + remaining + "   str=" + romanStr);
+        }
+        else if(remaining >= 10){
+            romanStr += "X";
+            remaining -= 10;
+            Console.WriteLine("Over 10   =" + remaining + "   str=" + romanStr);
+        }
+        else if(remaining >= 9){
+            romanStr += "IX";
+            remaining -= 9;
+            Console.WriteLine("Over 9   =" + remaining + "   str=" + romanStr);
+        }
+        else if(remaining >= 5){
+            romanStr += "V";
+            remaining -= 5;
+            Console.WriteLine("Over 5   =" + remaining + "   str=" + romanStr);
+        }
+        else if(remaining >= 4){
+            romanStr += "IV";
+            remaining -= 4;
+            Console.WriteLine("Over 4   =" + remaining + "   str=" + romanStr);
+        }
+        else if(remaining >= 1){
+            romanStr += "I";
+            remaining -= 1;
+            Console.WriteLine("Over 1   =" + remaining + "   str=" + romanStr);
+        }
+        else {
+            remaining = 0;
+        }
+    }
+
+    Console.WriteLine(romanStr);
+    return romanStr;
+}
+
+var result = IntToRoman(140);
+Console.WriteLine(result);
+
+

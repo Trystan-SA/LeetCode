@@ -1,0 +1,40 @@
+﻿static double FindMedianSortedArrays(int[] nums1, int[] nums2) {
+    var mergedArray = nums1.Concat(nums2).ToArray();
+    Array.Sort(mergedArray);
+ 
+    string indexDebug = "[";
+    foreach (var x in mergedArray){
+        indexDebug += x + ", ";
+    }
+    indexDebug+= "]";
+
+    Console.WriteLine();
+    Console.WriteLine("Array = " + indexDebug);
+    Console.WriteLine("Length = " + mergedArray.Length);
+
+    Console.WriteLine("Index1 = " + ((mergedArray.Length/2) -1));
+    Console.WriteLine("Index1 = " + (mergedArray.Length/2));
+
+    
+
+    if(mergedArray.Length % 2 == 1){
+        //Impair
+        Console.WriteLine("Impair");
+        return (double)mergedArray[(mergedArray.Length/2) ];
+    }
+    else {
+        //Pair
+        Console.WriteLine("Pair");
+        Console.WriteLine(mergedArray[ (mergedArray.Length/2) -1] + " + " + mergedArray[mergedArray.Length/2]  );
+        return (double)((double)mergedArray[(mergedArray.Length/2)-1] + (double)mergedArray[mergedArray.Length/2]) / 2;
+    }
+
+}
+
+
+var result = FindMedianSortedArrays(new int[] {}, new int[] {2,3} );
+var result2 = FindMedianSortedArrays(new int[] {1,2}, new int[] {3,4} );
+var result3 = FindMedianSortedArrays(new int[] {1,1}, new int[] {1,2} );
+
+Console.WriteLine($"result = {result},  result2 = {result2},   result3 = {result3}");
+

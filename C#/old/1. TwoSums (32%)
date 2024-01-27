@@ -1,0 +1,18 @@
+﻿static int[] TwoSum (int[] nums, int target) {
+    for (int i = 0; i < nums.Length; i++){
+        for (int j = 0; j < nums.Length; j++){
+            if(nums[i] + nums[j] == target && i != j){
+                Console.WriteLine(nums[i] + " " + nums[j] + " " + target);
+                return new int[] {i, j};
+            }
+        }
+    }
+
+    return null;
+}
+
+
+var result = TwoSum(new int[] {3,2,4}, 6);
+
+Console.WriteLine($"[{result[0]}, {result[1]}]");
+
