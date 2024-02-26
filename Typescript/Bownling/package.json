@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "dev": "tsc-watch bowling.ts --outDir ./dist --onSuccess \"node ./dist/bowling.js\""
+  },
+  "dependencies": {
+    "esbuild": "^0.20.1"
+  }
+}

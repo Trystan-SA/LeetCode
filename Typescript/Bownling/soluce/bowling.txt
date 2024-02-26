@@ -1,0 +1,103 @@
+type possibleScores = number | '/' | '-' | 'X';
+type Frame = possibleScores[];
+
+let score: Frame[] = [[5,4], [4, '/'], [7,'-'], ['X','-'], ['X', '-'], ['X', '-'], [5,3], [6, '/'], [4, '/'], ['X', 'X', 'X']];
+
+
+
+function GetFrameScore(frame: Frame): number{
+    if(frame){
+        let score = 0;
+
+        // Change '-' (miss) to 0
+        if(frame[0] === '-') frame[0] = 0;
+        if(frame[1] === '-') frame[1] = 0;
+        if(frame[2] === '-') frame[2] = 0;
+        
+        if(frame[0] === 'X'){
+            score += 10;
+        }
+        else if(frame[1] === '/'){
+            score += 10;
+        }
+        else {
+            //@ts-ignore
+            score += frame[0] + frame[1];
+        }
+
+        if(frame[2]){
+            if(frame[2] === 'X'){
+
+                score = 30
+       
+            }
+            else {
+                //@ts-ignore
+                score += frame[2]
+            }
+        }
+
+        return score;
+    }
+    else return 0
+}
+
+
+function CalculateBowlingScore(frames: Frame[]): number {
+    let scoring: number[] = [];
+
+    frames.forEach((frame, i)=>{
+        console.log("FRAME #"+ (i+1))
+        console.log("   ", frame)
+
+        let score = GetFrameScore(frame);
+
+        if(frame[0] === 'X'){
+            if(frames[i+1]){
+                if(typeof frames[i+1][0] === 'number'){
+                    //@ts-ignore
+                    score += frames[i+1][0]
+                }
+                else if(frames[i+1][0] === 'X') {
+                    score += 10;
+                    if(typeof frames[i+2][0] === 'number'){
+                    //@ts-ignore
+                    score += GetFrameScore(frames[i+2]);
+                    }
+                    else if(frames[i+2][0] === 'X') {
+                        score += 10;
+                    }
+                }
+            }
+            console.log("    X SCORE=", score)
+        }
+        if(frame[1] === '/'){
+            if(frames[i+1][0]){
+                if(typeof frames[i+1][0] === 'number'){
+                    //@ts-ignore
+                    score += frames[i+1][0]
+                }
+                else if(frames[i+1][0] === 'X'){
+                    score += 10;
+                }
+            }
+        }
+
+        scoring[i] = score;
+        console.log("FrameScore = ", scoring[i])
+    })
+    
+
+    scoring.forEach((element, i) => {
+        if(scoring[i-1]){
+            scoring[i] = scoring[i-1] + element
+        }
+    })
+
+    console.log(scoring)
+
+    return scoring[scoring.length-1];
+}
+
+
+console.log("Bowling Total Score =", CalculateBowlingScore(score)); // 134
